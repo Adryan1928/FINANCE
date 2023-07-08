@@ -12,6 +12,11 @@
     <br>
     <div class="container">
         <div class="row">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
             <div class="col-md-5">
                 <p class="fonte-destaque">Suas contas</p>
                 <hr>
@@ -57,7 +62,7 @@
                     <label>Valor</label>
                     <input type="number" name="valor" class="form-control" placeholder="">
                     <br>
-                    <input type="file" placeholder="Ícone" name="icone">
+                    <input type="file" placeholder="Ícone" name="icone" required>
                     <br>
                     <br>
                     <input style="width: 100%" type="submit" class="botao-principal" value="Enviar" >
