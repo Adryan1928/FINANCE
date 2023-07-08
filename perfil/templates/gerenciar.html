@@ -39,7 +39,7 @@
             <div class="col-md-5">
                 <p class="fonte-destaque">Nova conta</p>
                 
-                <form action="" method="POST">
+                <form action="{% url 'cadastrar_banco' %}" method="POST" enctype="multipart/form-data" > {% csrf_token %}
                     <label>Apelido</label>
                     <input type="text" name="apelido" class="form-control" placeholder="">
                     <br>
@@ -60,7 +60,7 @@
                     <input type="file" placeholder="Ícone" name="icone">
                     <br>
                     <br>
-                    <input style="width: 100%" type="submit" class="botao-principal">
+                    <input style="width: 100%" type="submit" class="botao-principal" value="Enviar" >
                 </form>
             </div>
         </div>
