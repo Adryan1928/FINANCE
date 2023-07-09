@@ -9,7 +9,10 @@ from django.contrib.messages import constants
 
 
 def home (request):
-    return render(request, 'home.html')
+    contas = Conta.objects.all()
+    total_contas = sum(conta.valor for conta in contas)
+
+    return render(request, 'home.html', {'contas': contas, 'total_contas': total_contas})
 
 def gerenciar (request):
     contas = Conta.objects.all()
