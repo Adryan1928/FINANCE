@@ -69,4 +69,4 @@ def update_categoria (request, id):
 
     categoria.save()
 
-    return redirect('perfil/gerenciar/')
+    return redirect('/perfil/gerenciar/')
