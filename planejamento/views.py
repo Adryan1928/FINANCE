@@ -15,12 +15,17 @@ def definir_planejamento(request):
 @csrf_exempt
 def update_valor_categoria(request, id):
     novo_valor = json.load(request)['novo_valor']
+    novo_valor = novo_valor.replace(',', '.')
     
     categoria = Categoria.objects.get(id = id)
-    categoria.valor_planejamento = novo_valor
+    categoria.valor_planejamento = float(novo_valor)
 
     categoria.save()
 
     messages.add_message(request, constants.SUCCESS, 'Valor atualizado')
 
     return redirect('/planejamento/definir_planejamento/')
+
+def ver_planejamento(request):
+    categorias = Categoria.objects.all()
+    return render(request, 'ver_planejamento.html', {'categorias': categorias})
