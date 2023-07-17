@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Conta, Categoria
 from django.contrib import messages
 from django.contrib.messages import constants
+from extrato.models import Valores
 
 
 # Create your views here.
@@ -73,3 +74,15 @@ def update_categoria (request, id):
     categoria.save()
 
     return redirect('/perfil/gerenciar/')
+
+def dashboard(request):
+    dados = {}
+    categorias = Categoria.objects.all()
+
+    for categoria in categorias:
+        total = 0
+        valores = Valores.objects.filter(categoria=categoria)
+        for valor in valores:
+            total += valor.valor
+        dados[categoria.categoria] = total
+    return render(request, 'dashboard.html', {'labels': list(dados.keys()), 'values': list(dados.values())})
